@@ -1,0 +1,42 @@
+﻿@model HelpingHandsWebApp.Models.OrgDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OrgDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.orgName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orgName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orgImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orgImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.orgID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

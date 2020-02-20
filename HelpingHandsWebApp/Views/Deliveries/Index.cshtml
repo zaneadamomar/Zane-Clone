@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HelpingHandsWebApp.Models.Delivery>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.courier.courierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hamper.hamperDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.destination)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.courier.courierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hamper.hamperDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.destination)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.deliveryID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.deliveryID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.deliveryID })
+        </td>
+    </tr>
+}
+
+</table>

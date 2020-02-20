@@ -1,0 +1,48 @@
+﻿@model HelpingHandsWebApp.Models.OrgDetails
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>OrgDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.orgName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orgName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.orgImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.orgImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
