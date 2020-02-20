@@ -10,107 +10,112 @@ using HelpingHandsWebApp.Models;
 
 namespace HelpingHandsWebApp.Controllers
 {
-    public class OrgDetailsController : Controller
+    public class PackagesController : Controller
     {
         private HelpingHandsWebApp_Context db = new HelpingHandsWebApp_Context();
 
-        // GET: OrgDetails
+        // GET: Packages
         public ActionResult Index()
         {
-            return View(db.OrgDetails.ToList());
+            var hampers = db.Hampers.Include(p => p.donor);
+            return View(hampers.ToList());
         }
 
-        // GET: OrgDetails/Details/5
+        // GET: Packages/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OrgDetails orgDetails = db.OrgDetails.Find(id);
-            if (orgDetails == null)
+            Packages packages = db.Hampers.Find(id);
+            if (packages == null)
             {
                 return HttpNotFound();
             }
-            return View(orgDetails);
+            return View(packages);
         }
 
-        // GET: OrgDetails/Create
+        // GET: Packages/Create
         public ActionResult Create()
         {
+            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name");
             return View();
         }
 
-        // POST: OrgDetails/Create
+        // POST: Packages/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "orgID,orgName,orgImage,email,Address")] OrgDetails orgDetails)
+        public ActionResult Create([Bind(Include = "packageID,donorID,packageDetails")] Packages packages)
         {
             if (ModelState.IsValid)
             {
-                db.OrgDetails.Add(orgDetails);
+                db.Hampers.Add(packages);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(orgDetails);
+            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name", packages.donorID);
+            return View(packages);
         }
 
-        // GET: OrgDetails/Edit/5
+        // GET: Packages/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OrgDetails orgDetails = db.OrgDetails.Find(id);
-            if (orgDetails == null)
+            Packages packages = db.Hampers.Find(id);
+            if (packages == null)
             {
                 return HttpNotFound();
             }
-            return View(orgDetails);
+            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name", packages.donorID);
+            return View(packages);
         }
 
-        // POST: OrgDetails/Edit/5
+        // POST: Packages/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "orgID,orgName,orgImage,email,Address")] OrgDetails orgDetails)
+        public ActionResult Edit([Bind(Include = "packageID,donorID,packageDetails")] Packages packages)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(orgDetails).State = EntityState.Modified;
+                db.Entry(packages).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(orgDetails);
+            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name", packages.donorID);
+            return View(packages);
         }
 
-        // GET: OrgDetails/Delete/5
+        // GET: Packages/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OrgDetails orgDetails = db.OrgDetails.Find(id);
-            if (orgDetails == null)
+            Packages packages = db.Hampers.Find(id);
+            if (packages == null)
             {
                 return HttpNotFound();
             }
-            return View(orgDetails);
+            return View(packages);
         }
 
-        // POST: OrgDetails/Delete/5
+        // POST: Packages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            OrgDetails orgDetails = db.OrgDetails.Find(id);
-            db.OrgDetails.Remove(orgDetails);
+            Packages packages = db.Hampers.Find(id);
+            db.Hampers.Remove(packages);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

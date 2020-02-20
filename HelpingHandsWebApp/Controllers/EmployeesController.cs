@@ -10,112 +10,107 @@ using HelpingHandsWebApp.Models;
 
 namespace HelpingHandsWebApp.Controllers
 {
-    public class HampersController : Controller
+    public class EmployeesController : Controller
     {
         private HelpingHandsWebApp_Context db = new HelpingHandsWebApp_Context();
 
-        // GET: Hampers
+        // GET: Employees
         public ActionResult Index()
         {
-            var hampers = db.Hampers.Include(h => h.donor);
-            return View(hampers.ToList());
+            return View(db.OrgDetails.ToList());
         }
 
-        // GET: Hampers/Details/5
+        // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hamper hamper = db.Hampers.Find(id);
-            if (hamper == null)
+            Employee employee = db.OrgDetails.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(hamper);
+            return View(employee);
         }
 
-        // GET: Hampers/Create
+        // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name");
             return View();
         }
 
-        // POST: Hampers/Create
+        // POST: Employees/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "hamperID,donorID,hamperDetails")] Hamper hamper)
+        public ActionResult Create([Bind(Include = "empID,empName,cell,email,Address")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Hampers.Add(hamper);
+                db.OrgDetails.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name", hamper.donorID);
-            return View(hamper);
+            return View(employee);
         }
 
-        // GET: Hampers/Edit/5
+        // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hamper hamper = db.Hampers.Find(id);
-            if (hamper == null)
+            Employee employee = db.OrgDetails.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name", hamper.donorID);
-            return View(hamper);
+            return View(employee);
         }
 
-        // POST: Hampers/Edit/5
+        // POST: Employees/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "hamperID,donorID,hamperDetails")] Hamper hamper)
+        public ActionResult Edit([Bind(Include = "empID,empName,cell,email,Address")] Employee employee)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(hamper).State = EntityState.Modified;
+                db.Entry(employee).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.donorID = new SelectList(db.DonorDetails, "donorID", "Name", hamper.donorID);
-            return View(hamper);
+            return View(employee);
         }
 
-        // GET: Hampers/Delete/5
+        // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Hamper hamper = db.Hampers.Find(id);
-            if (hamper == null)
+            Employee employee = db.OrgDetails.Find(id);
+            if (employee == null)
             {
                 return HttpNotFound();
             }
-            return View(hamper);
+            return View(employee);
         }
 
-        // POST: Hampers/Delete/5
+        // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Hamper hamper = db.Hampers.Find(id);
-            db.Hampers.Remove(hamper);
+            Employee employee = db.OrgDetails.Find(id);
+            db.OrgDetails.Remove(employee);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

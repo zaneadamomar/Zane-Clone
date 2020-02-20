@@ -16,7 +16,7 @@ namespace HelpingHandsWebApp.Models
         public Courier courier { get; set; }
 
         public int hamperID  { get; set; }
-        public Hamper hamper { get; set; }
+        public Packages hamper { get; set; }
 
         public string destination { get; set; }
     }

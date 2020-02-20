@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using HelpingHandsWebApp.Models;
+using System.Web.Helpers;
+using System.Security.Claims;
 
 namespace HelpingHandsWebApp
 {
@@ -14,6 +16,8 @@ namespace HelpingHandsWebApp
 
         public void ConfigureAuth(IAppBuilder app)
         {
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

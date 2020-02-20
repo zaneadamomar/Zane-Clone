@@ -171,9 +171,9 @@
     <Compile Include="Controllers\CouriersController.cs" />
     <Compile Include="Controllers\DeliveriesController.cs" />
     <Compile Include="Controllers\DonorDetailsController.cs" />
-    <Compile Include="Controllers\HampersController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OrgDetailsController.cs" />
+    <Compile Include="Controllers\PackagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,11 +181,11 @@
     <Compile Include="Models\Courier.cs" />
     <Compile Include="Models\Delivery.cs" />
     <Compile Include="Models\DonorDetails.cs" />
-    <Compile Include="Models\Hamper.cs" />
+    <Compile Include="Models\Packages.cs" />
     <Compile Include="Models\HelpingHandsWebApp_Context.cs" />
     <Compile Include="Models\HelpingHandsWebApp_ContextSeeder.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\OrgDetails.cs" />
+    <Compile Include="Models\Employee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -248,16 +248,16 @@
     <Content Include="Views\DonorDetails\Details.cshtml" />
     <Content Include="Views\DonorDetails\Edit.cshtml" />
     <Content Include="Views\DonorDetails\Index.cshtml" />
-    <Content Include="Views\Hampers\Create.cshtml" />
-    <Content Include="Views\Hampers\Delete.cshtml" />
-    <Content Include="Views\Hampers\Details.cshtml" />
-    <Content Include="Views\Hampers\Edit.cshtml" />
-    <Content Include="Views\Hampers\Index.cshtml" />
-    <Content Include="Views\OrgDetails\Create.cshtml" />
-    <Content Include="Views\OrgDetails\Delete.cshtml" />
-    <Content Include="Views\OrgDetails\Details.cshtml" />
-    <Content Include="Views\OrgDetails\Edit.cshtml" />
-    <Content Include="Views\OrgDetails\Index.cshtml" />
+    <Content Include="Views\Packages\Create.cshtml" />
+    <Content Include="Views\Packages\Delete.cshtml" />
+    <Content Include="Views\Packages\Details.cshtml" />
+    <Content Include="Views\Packages\Edit.cshtml" />
+    <Content Include="Views\Packages\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

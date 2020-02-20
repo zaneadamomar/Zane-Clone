@@ -8,18 +8,18 @@ using System.Web;
 
 namespace HelpingHandsWebApp.Models
 {
-    [Table("OrgDetails")]
-    public class OrgDetails
+    [Table("Employees")]
+    public class Employee
     {
         [Key]
         [Display(Name = "Organisation ID")]
-        public int orgID { get; set; }
+        public int empID { get; set; }
 
         [Display(Name = "Organisation Name")]
-        public string orgName { get; set; }
+        public string empName { get; set; }
 
-        [Display(Name = "Organisation Image")]
-        public byte[] orgImage { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        public int cell { get; set; }
 
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]

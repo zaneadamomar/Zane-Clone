@@ -11,6 +11,8 @@ using System.Security.Claims;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using HelpingHandsWebApp.ViewModels;
+using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace HelpingHandsWebApp.Controllers
 {
@@ -61,13 +63,15 @@ namespace HelpingHandsWebApp.Controllers
                 db.Accounts.Add(account);
                 db.SaveChanges();
 
+                Confirmation(account.email, account.Username, "success", "registered successfully");
+
                 TempData["Username"] = accid;
                 LoginViewModel log = new LoginViewModel();
                 log.Username = accid;
                 log.Password = accpass;
                 regLogin(log);
 
-                // Account.BuildEmailTemplate("Iqsaanmia@gmail.com","registered");
+               
 
                 return Content("Success");
             }
@@ -254,9 +258,48 @@ namespace HelpingHandsWebApp.Controllers
             base.Dispose(disposing);
         }
 
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> Confirmation(string receiver, string name, string subject, string body)
+        {
+            try
+            {
+                //    if (ModelState.IsValid)
+                //{
+                var senderEmail = new MailAddress("farmworks69@gmail.com", "Farmer's Fresh Produce");
+                var receiverEmail = new MailAddress(receiver, "Receiver");
+                var password = "farmerbrown1";
+                var sub = subject;
+                var bod = body;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = sub,
+                    Body = body
+                })
+                {
+                    await Task.Run(() => smtp.SendMailAsync(mess));
+                }
+                return View();
+                //}
+            }
+            catch (Exception ex)
+            {
+                string error = ex.ToString();
+                ViewBag.Error = "An Error Occurred";
+            }
+            return View();
+        }
 
 
-       
         [AllowAnonymous]
         public ActionResult regLogin(LoginViewModel model)
         {

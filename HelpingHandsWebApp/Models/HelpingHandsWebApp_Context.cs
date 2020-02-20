@@ -15,11 +15,11 @@ namespace HelpingHandsWebApp.Models
         }
 
         public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.Account> Accounts { get; set; }
-        public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.OrgDetails> OrgDetails { get; set; }
+        public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.Employee> OrgDetails { get; set; }
         public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.DonorDetails> DonorDetails { get; set; }
         public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.Courier> Couriers { get; set; }
         public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.Delivery> Deliveries { get; set; }
-        public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.Hamper> Hampers { get; set; }
+        public System.Data.Entity.DbSet<HelpingHandsWebApp.Models.Packages> Hampers { get; set; }
 
     }
 }

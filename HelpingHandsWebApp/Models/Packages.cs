@@ -6,14 +6,14 @@ using System.Web;
 
 namespace HelpingHandsWebApp.Models
 {
-    public class Hamper
+    public class Packages
     {
         [Key]
-        public int hamperID { get; set; }
+        public int packageID { get; set; }
         public int donorID { get; set; }
         public DonorDetails donor { get; set; }
 
-        public string hamperDetails { get; set; }
+        public string packageDetails { get; set; }
 
 
     }
